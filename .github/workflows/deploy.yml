@@ -33,7 +33,7 @@ jobs:
         configFilePath: GitVersion.yml  
         
     - name: createTag
-      if : ${{github.ref == 'refs/heads/main'}}
+    #  if : ${{github.ref == 'refs/heads/main'}}
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
