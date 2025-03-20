@@ -5,7 +5,8 @@ on:
       - main
   workflow_dispatch:
 
-    deploy:
+jobs:
+   deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
