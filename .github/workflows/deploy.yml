@@ -32,13 +32,17 @@ jobs:
         useConfigFile: true
         configFilePath: GitVersion.yml  
         
-    - name: createTag
-      if : ${{github.ref == 'refs/heads/main'}}
+    - name: create tag
+      if: ${{ github.ref == 'refs/heads/main' }}
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git tag -a  ${{ env.GitVersion_FullSemVer  }} -m "Incremented to  ${{ env.GitVersion_FullSemVer  }}"
-        git push origin  ${{ env.GitVersion_FullSemVer  }}
+        if ! git rev-parse -q --verify "refs/tags/${{ env.GitVersion_FullSemVer }}"; then
+          git tag -a ${{ env.GitVersion_FullSemVer }} -m "Incremented to ${{ env.GitVersion_FullSemVer }}"
+          git push origin ${{ env.GitVersion_FullSemVer }}
+        else
+          echo "Tag ${{ env.GitVersion_FullSemVer }} already exists. Skipping tag creation."
+        fi
   #  versioning:
   #   runs-on: ubuntu-latest
   #   steps:
