@@ -39,13 +39,13 @@ jobs:
       if: ${{ github.ref == 'refs/heads/main' }}
       run: |
         git config user.name "${{github.event.pusher.name}}"
-        git config user.email "${{github.event.pusher.email}}"
         if ! git rev-parse -q --verify "refs/tags/${{ env.GitVersion_FullSemVer }}"; then
           git tag -a ${{ env.GitVersion_FullSemVer }} -m "Incremented to ${{ env.GitVersion_FullSemVer }}"
           git push origin ${{ env.GitVersion_FullSemVer }}
         else
           echo "Tag ${{ env.GitVersion_FullSemVer }} already exists. Skipping tag creation."
         fi
+#         git config user.email "${{github.event.pusher.email}}"
 
   #  versioning:
 
