@@ -34,6 +34,9 @@ jobs:
 
     - name: print
       run: echo '${{ toJson(github) }}'
+
+    - name: test
+      run: git config --list
         
     - name: create tag
       if: ${{ github.ref == 'refs/heads/main' }}
