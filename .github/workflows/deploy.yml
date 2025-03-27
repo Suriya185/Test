@@ -38,8 +38,8 @@ jobs:
     - name: create tag
       if: ${{ github.ref == 'refs/heads/main' }}
       run: |
-        git config user.name "${{github.pusher.name}}"
-        git config user.email "${{github.pusher.email}}"
+        git config user.name "${{github.event.pusher.name}}"
+        git config user.email "${{github.event.pusher.email}}"
         if ! git rev-parse -q --verify "refs/tags/${{ env.GitVersion_FullSemVer }}"; then
           git tag -a ${{ env.GitVersion_FullSemVer }} -m "Incremented to ${{ env.GitVersion_FullSemVer }}"
           git push origin ${{ env.GitVersion_FullSemVer }}
