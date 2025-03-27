@@ -20,14 +20,14 @@ runs:
   steps:
     - name: Create tag
       run: |
-        if [ "${{ inputs.GITHUB_REF }}" = "refs/heads/main" ]; then
-          git config user.name "${{ inputs.GITHUB_EVENT_PUSHER_NAME }}"
-          git config user.email "${{ inputs.GITHUB_EVENT_PUSHER_EMAIL }}"
+        if [ "$inputs.GITHUB_REF" = "refs/heads/main" ]; then
+          git config user.name "$inputs.GITHUB_EVENT_PUSHER_NAME"
+          git config user.email "$inputs.GITHUB_EVENT_PUSHER_EMAIL"
           if ! git rev-parse -q --verify "refs/tags/$BUILD_NUMBER"; then
-            git tag -a "${{ inputs.BUILD_NUMBER }}" -m "Incremented to ${{ inputs.BUILD_NUMBER }}"
-            git push origin "${{ inputs.BUILD_NUMBER }}"
+            git tag -a "$inputs.BUILD_NUMBER" -m "Incremented to $inputs.BUILD_NUMBER"
+            git push origin "$inputs.BUILD_NUMBER"
           else
-            echo "Tag ${{ inputs.BUILD_NUMBER }} already exists. Skipping tag creation."
+            echo "Tag $inputs.BUILD_NUMBER already exists. Skipping tag creation."
           fi
         else
           echo "Not on the main branch. Skipping tag creation."
