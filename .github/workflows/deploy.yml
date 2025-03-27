@@ -46,6 +46,9 @@ jobs:
         else
           echo "Tag ${{ env.GitVersion_FullSemVer }} already exists. Skipping tag creation."
         fi
+
+  #  versioning:
+
   #  versioning:
   #   runs-on: ubuntu-latest
   #   steps:
