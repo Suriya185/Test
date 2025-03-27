@@ -31,6 +31,9 @@ jobs:
       with:
         useConfigFile: true
         configFilePath: GitVersion.yml  
+
+    - name: print
+      run: echo '${{ toJson(github) }}'
         
     - name: create tag
       if: ${{ github.ref == 'refs/heads/main' }}
