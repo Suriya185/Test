@@ -21,7 +21,7 @@ runs:
           git config user.name "$GITHUB_EVENT_PUSHER_NAME"
           git config user.email "$GITHUB_EVENT_PUSHER_NAME@users.noreply.github.com"
           if ! git rev-parse -q --verify "refs/tags/$BUILD_NUMBER"; then
-            git tag -a "$BUILD_NUMBER" -m "Incremented to $BUILD_NUMBER"
+            git tag -a "v$BUILD_NUMBER" -m "Incremented to $BUILD_NUMBER"
             git push origin "$BUILD_NUMBER"
           else
             echo "Tag $BUILD_NUMBER already exists. Skipping tag creation."
