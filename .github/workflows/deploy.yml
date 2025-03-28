@@ -34,6 +34,9 @@ jobs:
 
     - name: print
       run: echo '${{ toJson(github) }}'
+
+    - name: print
+      run: git config --global --list
       
     - name: create tag
       uses: ./.github/actions/git
