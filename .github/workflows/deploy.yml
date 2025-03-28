@@ -41,7 +41,6 @@ jobs:
         BUILD_NUMBER:  ${{ env.GitVersion_FullSemVer }}
         GITHUB_REF:  ${{ github.ref }}
         GITHUB_EVENT_PUSHER_NAME: ${{github.actor}}
-        GITHUB_EVENT_PUSHER_EMAIL: '${{github.actor}}@users.noreply.github.com'
 
       
     # - name: create tag
