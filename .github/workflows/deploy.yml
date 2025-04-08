@@ -23,4 +23,7 @@ jobs:
         fetch-depth: 0 
 
     - name: print
+      run: echo '${{ inputs.ENVIRONMENT }}'
+      
+    - name: print
       run: echo '${{ inputs.ENVIRONMENT == 'production' && 'prod' || inputs.ENVIRONMENT }}'
