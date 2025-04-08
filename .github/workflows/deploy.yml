@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       ENVIRONMENT:
-      type: string
-      default: production
+        type: string
+        default: production
       
 permissions:
   id-token: write
