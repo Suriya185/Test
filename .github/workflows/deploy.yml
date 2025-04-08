@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      ENVIRONMENT:
+      ENVIRONMENT: production
         type: string
         default: production
       
