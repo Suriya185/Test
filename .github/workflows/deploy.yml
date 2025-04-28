@@ -36,5 +36,3 @@ jobs:
     - name: print
       run: echo '${{ env.VERSION_OPTION }}'
 
-    - name: print
-      run: echo '${{ inputs.ENVIRONMENT == "production" && "prod" || "--version" }}'
