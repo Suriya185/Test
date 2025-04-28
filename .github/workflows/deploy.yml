@@ -6,8 +6,6 @@ on:
       ENVIRONMENT:
         type: string
         default: production
-      HELM_CHART_VERSION:
-        default: '1.23.0'
 permissions:
   id-token: write
   contents: write
