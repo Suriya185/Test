@@ -26,4 +26,4 @@ jobs:
       run: echo '${{ inputs.ENVIRONMENT }}'
       
     - name: print
-      run: echo '${{ inputs.ENVIRONMENT == 'production' && 'prod' || '--version '+ inputs.ENVIRONMENT }}'
+      run: echo '${{ inputs.ENVIRONMENT == "production" && "prod" || "--version " inputs.ENVIRONMENT }}'
