@@ -27,11 +27,11 @@ jobs:
 
     - name: print
       run: |
-          if [ "$ISTIO_VERSION" != "" ]; then
-            echo "VERSION_OPTION=--version $ISTIO_VERSION" >> $GITHUB_ENV
-          else
-           echo "VERSION_OPTION=''" >> $GITHUB_ENV
-          fi
+        if [ "$ISTIO_VERSION" != "" ]; then
+          echo "VERSION_OPTION=--version $ISTIO_VERSION" >> $GITHUB_ENV
+        else
+          echo "VERSION_OPTION=''" >> $GITHUB_ENV
+        fi
 
     - name: print
       run: echo '${{ env.VERSION_OPTION }}'
