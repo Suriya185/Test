@@ -36,5 +36,5 @@ jobs:
         HELM_CHART_VERSION: ${{ inputs.HELM_CHART_VERSION }}
 
     - name: print
-      run: echo '${{ env.VERSION_OPTION }}'
+      run: echo '$HELM_CHART_VERSION '
 
