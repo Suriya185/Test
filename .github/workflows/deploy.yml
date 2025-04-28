@@ -15,8 +15,7 @@ permissions:
 jobs:
    deploy:
     runs-on: ubuntu-latest
-    env:
-      HELM_CHART_VERSION: "1.23.0"
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -32,7 +31,7 @@ jobs:
           echo "HELM_CHART_VERSION=''" >> $GITHUB_ENV
         fi
       env:
-        HELM_CHART_VERSION: ${{ inputs.HELM_CHART_VERSION }}
+        HELM_CHART_VERSION: "1.23.0"
 
     - name: print
       run: echo '$HELM_CHART_VERSION '
