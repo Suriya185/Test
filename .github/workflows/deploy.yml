@@ -24,10 +24,7 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: print
-      run: echo '${{ inputs.ENVIRONMENT }}'
-
-    - name: print
+    - name: set VERSION_OPTION
       run: |
         if [ "${{ env.ISTIO_VERSION }}" != "" ]; then
           echo "VERSION_OPTION=--version $ISTIO_VERSION" >> $GITHUB_ENV
