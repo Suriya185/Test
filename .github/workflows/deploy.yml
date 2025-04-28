@@ -25,7 +25,7 @@ jobs:
     - name: set helm version
       shell: bash
       run: |
-        if [ "$HELM_CHART_VERSION" != "" ]; then
+        if [ $HELM_CHART_VERSION != "" ]; then
           echo "HELM_CHART_VERSION=--version $HELM_CHART_VERSION" >> $GITHUB_ENV
         else
           echo "HELM_CHART_VERSION=''" >> $GITHUB_ENV
