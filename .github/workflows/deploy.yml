@@ -24,6 +24,17 @@ jobs:
 
     - name: print
       run: echo '${{ inputs.ENVIRONMENT }}'
-      
+
     - name: print
-      run: echo '${{ inputs.ENVIRONMENT == "production" && "prod" || "--version " inputs.ENVIRONMENT }}'
+      run: |
+          if [ "$ISTIO_VERSION" != "" ]; then
+            echo"VERSION_OPTION=--version $ISTIO_VERSION" >> $GITHUB_ENV
+          else
+           echo"VERSION_OPTION=''" >> $GITHUB_ENV
+          fi
+
+    - name: print
+      run: echo '${{ env.VERSION_OPTION }}'
+
+    - name: print
+      run: echo '${{ inputs.ENVIRONMENT == "production" && "prod" || "--version" }}'
