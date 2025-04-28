@@ -6,7 +6,8 @@ on:
       ENVIRONMENT:
         type: string
         default: production
-      
+      HELM_CHART_VERSION:
+        default: '1.23.0'
 permissions:
   id-token: write
   contents: write
@@ -16,8 +17,6 @@ permissions:
 jobs:
    deploy:
     runs-on: ubuntu-latest
-    env:
-      HELM_CHART_VERSION: 1.23.0
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
