@@ -26,12 +26,11 @@ jobs:
       shell: bash
       run: |
         index=0
-        for ns in ${namespace}; do 
-          echo "Index: $index, Namespace: $ns"
-          index= index + 1;
+        for index in "${!namespace[@]}"; do
+          echo "Index: $index, Value: ${my_array[index]}"
         done
       env:
-        namespace: "dev beta"
+        namespace: "apple banana cherry"
 
 
 
