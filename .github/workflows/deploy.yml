@@ -28,7 +28,7 @@ jobs:
         index=0
         for ns in ${namespace}; do 
           echo "Index: $index, Namespace: $ns"
-          index++;
+          index= index + 1;
         done
       env:
         namespace: "dev beta"
