@@ -32,7 +32,21 @@ jobs:
       env:
         namespace: ("apple" "banana" "cherry")
 
-
+    - name: set helm version
+      shell: bash
+      run: |
+        # Define the NAMESPACES variable as a string
+        NAMESPACES='["dev","test"]'
+        
+        # Convert the string into a Bash array
+        eval "NAMESPACES_ARRAY=(${NAMESPACES//,/ })"
+        
+        # Iterate over the array
+        for ns in "${NAMESPACES_ARRAY[@]}"; do
+          echo "Namespace: $ns"
+        done
+      env:
+        namespace: ("apple" "banana" "cherry")
 
     - name: set helm version
       shell: bash
