@@ -26,12 +26,13 @@ jobs:
       shell: bash
       run: |
         index=0
-        for ns in $namespace; do 
+        for ns in ${namespace}; do 
           echo "Index: $index, Namespace: $ns"
           ((index++))
         done
       env:
         namespace: "dev beta"
+
 
 
     - name: set helm version
