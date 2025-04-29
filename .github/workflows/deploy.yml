@@ -25,28 +25,19 @@ jobs:
     - name: set helm version
       shell: bash
       run: |
-        my_array=("apple" "banana" "cherry")
-        for value in "${my_array[@]}"; do
-          echo "Value: $value"
+        # Define the string
+        string='["apple","banana","cherry"]'
+        
+        # Remove the square brackets and quotes, then split the string into an array
+        string=${string//[\[\]\"]/}
+        IFS=',' read -r -a array <<< "$string"
+        
+        # Iterate over the array and print each element
+        for item in "${array[@]}"; do
+          echo "Item: $item"
         done
       env:
-        namespace: ("apple" "banana" "cherry")
-
-    - name: set helm version
-      shell: bash
-      run: |
-        # Define the NAMESPACES variable as a string
-        NAMESPACES='["dev","test"]'
-        
-        # Convert the string into a Bash array
-        eval "NAMESPACES_ARRAY=(${NAMESPACES//,/ })"
-        
-        # Iterate over the array
-        for ns in "${NAMESPACES_ARRAY[@]}"; do
-          echo "Namespace: $ns"
-        done
-      env:
-        namespace: ("apple" "banana" "cherry")
+        namespace: '["apple","banana","cherry"]'
 
     - name: set helm version
       shell: bash
