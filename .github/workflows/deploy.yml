@@ -26,7 +26,7 @@ jobs:
       shell: bash
       run: |
         # Define the string
-        string='["apple","banana","cherry"]'
+        string= $namespace
         
         # Remove the square brackets and quotes, then split the string into an array
         string=${string//[\[\]\"]/}
@@ -37,7 +37,7 @@ jobs:
           echo "Item: $item"
         done
       env:
-        namespace: '["apple","banana","cherry"]'
+        namespace: '["dev","beta","preprod"]'
 
     - name: set helm version
       shell: bash
