@@ -25,14 +25,10 @@ jobs:
     - name: set helm version
       shell: bash
       run: |
-          my_array=("apple" "banana" "cherry")
-          for index in "${!my_array[@]}"; do
-            echo "Index: $index, Value: ${my_array[index]}"
-          done
-          # Output:
-          # Index: 0, Value: apple
-          # Index: 1, Value: banana
-          # Index: 2, Value: cherry
+        my_array=("apple" "banana" "cherry")
+        for value in "${my_array[@]}"; do
+          echo "Value: $value"
+        done
       env:
         namespace: ("apple" "banana" "cherry")
 
