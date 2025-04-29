@@ -26,7 +26,7 @@ jobs:
       shell: bash
       run: |
         # Define the string
-        string= $namespace
+        string=$namespace
         
         # Remove the square brackets and quotes, then split the string into an array
         string=${string//[\[\]\"]/}
