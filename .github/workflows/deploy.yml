@@ -25,6 +25,18 @@ jobs:
     - name: set helm version
       shell: bash
       run: |
+        index=0
+        for ns in $namespace; do 
+          echo "Index: $index, Namespace: $ns"
+          ((index++))
+        done
+      env:
+        namespace: "dev beta"
+
+
+    - name: set helm version
+      shell: bash
+      run: |
         if [ "${{ env.HELM_CHART_VERSION }}" != "" ]; then
           echo "HELM_CHART_VERSION=--version ${{ env.HELM_CHART_VERSION }}" >> $GITHUB_ENV
         else
