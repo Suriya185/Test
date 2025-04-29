@@ -30,7 +30,7 @@ jobs:
           echo "Index: $index, Value: ${my_array[index]}"
         done
       env:
-        namespace: "apple banana cherry"
+        namespace: ("apple" "banana" "cherry")
 
 
 
