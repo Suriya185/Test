@@ -1,0 +1,25 @@
+name: Matrix Loop Example
+
+on:
+  workflow_call:
+    inputs:
+      NAMESPACE:
+        required: false
+        default: '["dev","test"]'
+      AKS_NAME:
+        type: string
+        required: false
+        default: 'pp-stack-spot-aks'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        namespace: ${{ fromJson(inputs.NAMESPACE) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run build
+        run: echo "Running build for namespace: ${{ matrix.namespace }} and AKS_NAME: ${{ inputs.AKS_NAME }}"
