@@ -13,6 +13,9 @@ permissions:
   packages: write
 
 jobs:
+   matrix:
+     uses: ./.github/workflows/matrix.yml
+  
    deploy:
     runs-on: ubuntu-latest
 
