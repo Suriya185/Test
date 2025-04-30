@@ -6,6 +6,7 @@ on:
       NAMESPACE:
         required: false
         default: '["dev","test"]'
+        type: string
       AKS_NAME:
         type: string
         required: false
