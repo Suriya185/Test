@@ -68,10 +68,7 @@ jobs:
 
                 for item in  ${items[@]}; do
                    for key in ${!item}; do
-                      if [-z ${{ env.OVERRIDE_VALUES }}];
-                      then
                          echo "grafana.azure[$(echo "$key" | jq -r '.index')].$key: $value"
-                      fi
                    done
                  done
 
