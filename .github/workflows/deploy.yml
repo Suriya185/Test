@@ -69,6 +69,14 @@ jobs:
                   for key in $item; do
                     value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
                     echo "Key: $key, Value: $value"
+
+                    if [-z ${{ env.OVERRIDE_VALUES }}];
+                    then
+                        echo "OVERRIDE_VALUES=grafana.azure[${{item.index}}].$key: $value" >> $GITHUB_ENV
+                    else
+                        echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
+                        grafana.azure[${{item.index}}].${{ items.key }}: ${{ item.value }}" >> $GITHUB_ENV
+                    fi
                   done
                 done
 
