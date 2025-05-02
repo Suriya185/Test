@@ -65,14 +65,14 @@ jobs:
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
 
-                for item in "${items[@]}"; do
-                  keys=$(echo "$item" | jq -c 'keys[]')
-                  for key in $keys; do
-                    value=$(echo "$item" | jq -r .$key)
-                    index=$(echo "$item" | jq -r .index)
-                    echo "grafana.azure[$index].$key: $value"
-                  done
-                done
+                for item in  ${items[@]}; do
+                  keys=$(echo $item | jq -c 'keys[]')
+                     for key in $keys; do
+                       value=$(echo $item | jq -r .$key)
+                       index=$(echo $item | jq -r .index)
+                       echo "grafana.azure[$index].$key: $value"
+                     done
+                 done
 
 
 
