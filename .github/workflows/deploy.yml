@@ -81,7 +81,7 @@ jobs:
                       fi
                     done
                  done
-                echo "GRAFANA_CONFIG_B64=$string_no_quotes" >> $GITHUB_ENV
+                echo "GRAFANA_CONFIG_B64=$(echo "$my_variable" | tr -d '"')" >> $GITHUB_ENV
                 string_no_quotes=$(echo "$my_variable" | tr -d '"')
                 echo "$GRAFANA_CONFIG_B64" 
 
