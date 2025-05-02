@@ -82,5 +82,5 @@ jobs:
                     done
                  done
                 string_no_quotes=$(echo -e "$my_variable" | tr -d '"')
-                echo "$string_no_quotes" > index.md
-                cat index.md
+                echo "$string_no_quotes" > tttttt.md
+                cat tttttt.md
