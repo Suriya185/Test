@@ -65,15 +65,12 @@ jobs:
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
 
-                
-                for item in ${items[@]}; do
-                  index=$(echo "$item" | jq -r '.index')
-                  for key in $(echo "$item" | jq -r 'keys[]'); do
-                    value=$(echo "$item" | jq -r --arg k "$key" '.[$k]')
-                    echo "Index: $index, Key: $key, Value: $value"
-                  done
-                done
-
+                 for item in  ${items[@]}; do
+                   for key in $item; do
+                     value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
+                     echo "Index: $index, Key: $key, Value: $value"
+                   done
+                 done
 
 
 
