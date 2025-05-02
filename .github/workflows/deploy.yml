@@ -70,10 +70,10 @@ jobs:
             for item in ${items[@]}; do
                 if [-z ${{ env.OVERRIDE_VALUES }}];
                 then
-                   echo "OVERRIDE_VALUES=grafana.azure[${{item.index}}].${{ item.Key }}: ${{ item.Value }}" >> $GITHUB_ENV
+                   echo "OVERRIDE_VALUES=grafana.azure[${{item.index}}].${{ item.key }}: ${{ item.value }}" >> $GITHUB_ENV
                 else
                    echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
-                			 grafana.azure[${{item.index}}].${{ items.Key }}: ${{ item.Value }}" >> $GITHUB_ENV
+                			 grafana.azure[${{item.index}}].${{ items.key }}: ${{ item.value }}" >> $GITHUB_ENV
                 fi
             done
             echo "${{ env.OVERRIDE_VALUES }}"
