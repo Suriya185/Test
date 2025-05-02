@@ -67,9 +67,11 @@ jobs:
 
 
                 for item in  ${items[@]}; do
-                         echo "$item"
-
-                
+                  keys=$(echo "$item" | jq -c 'keys[]')
+                     for key in $keys; do
+                       value=$(echo "$json_data" | jq -r ".$key")
+                       echo "Key: $key, Value: $value"
+                     done
                    #for key in ${!item}; do
                    #      echo "grafana.azure[$(echo "$key" | jq -r '.index')].$key: $value"
                    #done
