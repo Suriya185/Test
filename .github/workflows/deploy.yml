@@ -70,9 +70,9 @@ jobs:
                          echo "$item"
 
                 
-                   for key in ${!item}; do
-                         echo "grafana.azure[$(echo "$key" | jq -r '.index')].$key: $value"
-                   done
+                   #for key in ${!item}; do
+                   #      echo "grafana.azure[$(echo "$key" | jq -r '.index')].$key: $value"
+                   #done
                  done
 
 
