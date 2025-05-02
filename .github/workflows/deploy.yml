@@ -67,11 +67,18 @@ jobs:
 
                 for item in  ${items[@]}; do
                   keys=$(echo $item | jq -c 'keys[]')
-                     for key in $keys; do
-                       value=$(echo $item | jq -r .$key)
-                       index=$(echo $item | jq -r .index)
-                       echo "grafana.azure[$index].$key: $value"
-                     done
+                     if [-z ${{ env.OVERRIDE_VALUES }}];
+                      then
+                           for key in $keys; do
+                             value=$(echo $item | jq -r .$key)
+                             index=$(echo $item | jq -r .index)
+                             echo "grafana.azure[$index].$key: $value"
+                           done
+                      else
+                        $OVERRIDE_VALUES=grafana.azure[$index].$key: $value 
+                                         $OVERRIDE_VALUES
+                      fi
+                      echo '$OVERRIDE_VALUES'
                  done
 
 
