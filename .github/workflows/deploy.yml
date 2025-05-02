@@ -77,11 +77,11 @@ jobs:
                       then
                          my_variable="grafana.azure[$index].$key: $value"
                       else
-                         my_variable="${my_variable} grafana.azure[$index].$key: $value"
+                         my_variable="${my_variable}\ngrafana.azure[$index].$key: $value"
                       fi
                     done
                  done
-                echo $my_variable
+                echo -e $my_variable
 
 
 
