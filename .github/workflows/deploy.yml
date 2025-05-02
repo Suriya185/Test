@@ -23,7 +23,7 @@ jobs:
 
     - name: print
       run: |
-        jq -c '.[]' ./test.json | while read i; do
+        jq -c '.[]' ./test.json | while read item; do
           name=$(echo "$item" | jq -r '.name')
           age=$(echo "$item" | jq -r '.age')
           echo "Name is $name, Age is $age"
