@@ -21,6 +21,33 @@ jobs:
       with:
         fetch-depth: 0 
 
+    - name: print0
+      run: |
+
+        json='[
+                {
+                  "name": "Alice",
+                  "age": 30
+                },
+                {
+                  "name": "Bob",
+                  "age": 25
+                },
+                {
+                  "name": "Charlie",
+                  "age": 35
+                }
+              ]'
+      
+        readarray -t my_array < <(jq --compact-output '.[]' json)
+        
+        # iterate through the Bash array
+        for item in "${my_array[@]}"; do
+          original_name=$(jq --raw-output '.original_name' <<< "$item")
+          changed_name=$(jq --raw-output '.changed_name' <<< "$item")
+          # do your stuff
+        done
+
     - name: print
       run: |
         jq -c '.[]' ./test.json | while read item; do
@@ -29,4 +56,12 @@ jobs:
           echo "Name is $name, Age is $age"
         done
 
+        readarray -t my_array < <(jq --compact-output '.[]' input.json)
+        
+        # iterate through the Bash array
+        for item in "${my_array[@]}"; do
+          original_name=$(jq --raw-output '.original_name' <<< "$item")
+          changed_name=$(jq --raw-output '.changed_name' <<< "$item")
+          # do your stuff
+        done
 
