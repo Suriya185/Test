@@ -69,8 +69,8 @@ jobs:
                 for item in  ${items[@]}; do
                   keys=$(echo "$item" | jq -c 'keys[]')
                      for key in $keys; do
-                       value=$(echo "$item " | jq -r .$key)
-                       index=$(echo "$item " | jq -r .index)
+                       value=$(echo $item | jq -r .$key)
+                       index=$(echo $item | jq -r .index)
                        echo "grafana.azure[$index].$key: $value"
                      done
                    #for key in ${!item}; do
