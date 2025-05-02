@@ -28,10 +28,20 @@ jobs:
     - name: print
       run: |
         # Assuming 'array_string' is your JSON string
-        array_str=("item1", "item2", "item3")
-        echo "$array_str" | jq -r '.[] | .[0]'
-
-        echo "First element: $first_element"
+        array_str='[
+                    {
+                      "name": "Alice",
+                      "age": 30
+                    },
+                    {
+                      "name": "Bob",
+                      "age": 25
+                    },
+                    {
+                      "name": "Charlie",
+                      "age": 35
+                    }
+                  ]'
         
         # Access all elements
         echo "$array_str" | jq -r .[]
