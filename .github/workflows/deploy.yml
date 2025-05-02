@@ -67,6 +67,8 @@ jobs:
                       ]'
 
             items=$(echo "$JSON_Content" | jq -c -r '.[]')
+            echo "$items"
+            
             for item in ${items[@]}; do
                 if [-z ${{ env.OVERRIDE_VALUES }}];
                 then
