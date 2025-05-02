@@ -39,7 +39,7 @@ jobs:
                 }
               ]'
       
-        readarray -t my_array < <(jq --compact-output '.[]' #json)
+        readarray -t my_array < <(jq --compact-output '.[]' $json)
         
         # iterate through the Bash array
         for item in "${my_array[@]}"; do
