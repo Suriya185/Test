@@ -66,9 +66,9 @@ jobs:
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
 
                  for item in  ${items[@]}; do
-                   for key in $item; do
+                   for key in ${!item}; do
                      value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
-                     echo "Index: $index, Key: $key, Value: $value"
+                     echo "Index: $(echo "$item" | jq -r '.index'), Key: $key, Value: $value"
                    done
                  done
 
