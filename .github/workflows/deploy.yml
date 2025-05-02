@@ -64,7 +64,7 @@ jobs:
                           "clientSecret": "grafanaClientSecret_paconnect"
                         }]'
 
-                for key in $(jq -r 'keys[]' <<< "$json_data"); do
+                for key in $(jq -r 'keys[]' <<< "$JSON_Content"); do
                   value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
                   echo "Key: $key, Value: $value"
                 done
