@@ -24,25 +24,57 @@ jobs:
     - name: print
       run: |
         JSON_Content='[
-                {
-                  "name": "Alice",
-                  "age": 30
-                },
-                {
-                  "name": "Bob",
-                  "age": 25
-                },
-                {
-                  "name": "Charlie",
-                  "age": 35
-                }
-              ]'
+                        {
+                          "index": 0,
+                          "name": "AzureMonitor",
+                          "orgId": 1,
+                          "url": "/api/datasources/proxy/2",
+                          "isDefault": true,
+                          "subscriptionId": "${{ parameters.subscriptionId }}",
+                          "tenantId": "db329bd8-af39-4039-b008-3360eebd6898",
+                          "logAnalyticsWorkspace": "$(TFO_LOG_ANALYTICS_WORKSPACE_ID)",
+                          "appInsightsAppId": "$(TFO_APP_INSIGHTS_APPLICATION_ID)",
+                          "appInsightsApiKey": "$(TFO_APP_INSIGHTS_API_KEY_GRAFANA)",
+                          "clientId": "e6ed32be-39b8-4eaa-bffc-d5433e6e0b7e",
+                          "clientSecret": "${{ parameters.grafanaClientSecret }}"
+                        },
+                        {
+                          "index": 1,
+                          "name": "lz-ehd-dev-paconnect",
+                          "orgId": 1,
+                          "isDefault": false,
+                          "subscriptionId": "245841fd-f2fa-4aa8-b222-835928d953c8",
+                          "tenantId": "bd16c2b9-cbc8-46b6-892e-36bbe902b867",
+                          "logAnalyticsWorkspace": "dev-clint-app-insights-ws",
+                          "appInsightsAppId": "fb630410-9934-4587-bea8-e794ab446121",
+                          "appInsightsApiKey": "$(appInsightsApiKey_dev_paconnect)",
+                          "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
+                          "clientSecret": "$(grafanaClientSecret_paconnect)"
+                        },
+                        {
+                          "index": 2,
+                          "name": "lz-ehd-stg-paconnect",
+                          "orgId": 1,
+                          "isDefault": false,
+                          "subscriptionId": "300b6a09-1534-444f-998f-3b2dc298b393",
+                          "tenantId": "bd16c2b9-cbc8-46b6-892e-36bbe902b867",
+                          "logAnalyticsWorkspace": "stg-clint-app-insights-ws",
+                          "appInsightsAppId": "4a5a3050-a43c-42c4-99c3-a18995b94cd2",
+                          "appInsightsApiKey": "$(appInsightsApiKey_stg_paconnect)",
+                          "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
+                          "clientSecret": "$(grafanaClientSecret_paconnect)"
+                        }
+                      ]'
 
             items=$(echo "$JSON_Content" | jq -c -r '.[]')
             for item in ${items[@]}; do
-              name=$(echo "$item" | jq -r '.name')
-              age=$(echo "$item" | jq -r '.age')
-              echo "Name is $name, Age is $age"
+                if [-z ${{ env.OVERRIDE_VALUES }}];
+                then
+                   echo "OVERRIDE_VALUES=grafana.azure[${{datasource.index}}].${{ value.Key }}: ${{ value.Value }}" >> $GITHUB_ENV
+                else
+                   echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
+                			 grafana.azure[${{datasource.index}}].${{ value.Key }}: ${{ value.Value }}" >> $GITHUB_ENV
+                fi
             done
-
+            echo "${{ env.OVERRIDE_VALUES }}"
 
