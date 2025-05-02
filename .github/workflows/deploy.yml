@@ -25,34 +25,15 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: set helm version
-      shell: bash
-      run: |
-        # Define the string
-        string=$namespace
-        
-        # Remove the square brackets and quotes, then split the string into an array
-        string=${string//[\[\]\"]/}
-        IFS=',' read -r -a array <<< "$string"
-        
-        # Iterate over the array and print each element
-        for item in "${array[@]}"; do
-          echo "Item: $item"
-        done
-      env:
-        namespace: '["dev","beta","preprod"]'
-
-    - name: set helm version
-      shell: bash
-      run: |
-        if [ "${{ env.HELM_CHART_VERSION }}" != "" ]; then
-          echo "HELM_CHART_VERSION=--version ${{ env.HELM_CHART_VERSION }}" >> $GITHUB_ENV
-        else
-          echo "HELM_CHART_VERSION=''" >> $GITHUB_ENV
-        fi
-      env:
-        HELM_CHART_VERSION: "1.23.0"
-
     - name: print
-      run: echo '${{ env.HELM_CHART_VERSION }}'
+      run: |
+        # Assuming 'array_string' is your JSON string
+        array_str='["item1", "item2", "item3"]'
+        
+        # Access the first element
+        first_element=$(echo "$array_str" | jq -r '.[] | .[0]')
+        echo "First element: $first_element"
+        
+        # Access all elements
+        echo "$array_str" | jq -r .[]
 
