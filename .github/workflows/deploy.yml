@@ -30,13 +30,13 @@ jobs:
                           "orgId": 1,
                           "url": "/api/datasources/proxy/2",
                           "isDefault": true,
-                          "subscriptionId": "${{ parameters.subscriptionId }}",
+                          "subscriptionId": "parameters.subscriptionId",
                           "tenantId": "db329bd8-af39-4039-b008-3360eebd6898",
-                          "logAnalyticsWorkspace": "$(TFO_LOG_ANALYTICS_WORKSPACE_ID)",
-                          "appInsightsAppId": "$(TFO_APP_INSIGHTS_APPLICATION_ID)",
-                          "appInsightsApiKey": "$(TFO_APP_INSIGHTS_API_KEY_GRAFANA)",
+                          "logAnalyticsWorkspace": "TFO_LOG_ANALYTICS_WORKSPACE_ID",
+                          "appInsightsAppId": "TFO_APP_INSIGHTS_APPLICATION_ID",
+                          "appInsightsApiKey": "TFO_APP_INSIGHTS_API_KEY_GRAFANA",
                           "clientId": "e6ed32be-39b8-4eaa-bffc-d5433e6e0b7e",
-                          "clientSecret": "${{ parameters.grafanaClientSecret }}"
+                          "clientSecret": "parameters.grafanaClientSecret"
                         },
                         {
                           "index": 1,
@@ -47,9 +47,9 @@ jobs:
                           "tenantId": "bd16c2b9-cbc8-46b6-892e-36bbe902b867",
                           "logAnalyticsWorkspace": "dev-clint-app-insights-ws",
                           "appInsightsAppId": "fb630410-9934-4587-bea8-e794ab446121",
-                          "appInsightsApiKey": "$(appInsightsApiKey_dev_paconnect)",
+                          "appInsightsApiKey": "appInsightsApiKey_dev_paconnect",
                           "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
-                          "clientSecret": "$(grafanaClientSecret_paconnect)"
+                          "clientSecret": "grafanaClientSecret_paconnect"
                         },
                         {
                           "index": 2,
@@ -60,9 +60,9 @@ jobs:
                           "tenantId": "bd16c2b9-cbc8-46b6-892e-36bbe902b867",
                           "logAnalyticsWorkspace": "stg-clint-app-insights-ws",
                           "appInsightsAppId": "4a5a3050-a43c-42c4-99c3-a18995b94cd2",
-                          "appInsightsApiKey": "$(appInsightsApiKey_stg_paconnect)",
+                          "appInsightsApiKey": "appInsightsApiKey_stg_paconnect",
                           "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
-                          "clientSecret": "$(grafanaClientSecret_paconnect)"
+                          "clientSecret": "grafanaClientSecret_paconnect"
                         }
                       ]'
 
