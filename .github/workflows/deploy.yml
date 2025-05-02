@@ -65,10 +65,16 @@ jobs:
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
 
-                 for item in  ${items[@]}; do
-                   for key in $item; do
-                     value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
-                     echo "Index: $(echo "$key" | jq -r '.index'), Key: $key, Value: $value"
+
+                for item in  ${items[@]}; do
+                   for key in ${!item}; do
+                      if [-z ${{ env.OVERRIDE_VALUES }}];
+                      then
+                         echo "OVERRIDE_VALUES=grafana.azure[$(echo "$item" | jq -r '.index')].$key: $value" >> $GITHUB_ENV
+                      else
+                         echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
+                      			 grafana.azure[$(echo "$item" | jq -r '.index')].$key: $value" >> $GITHUB_ENV
+                      fi
                    done
                  done
 
