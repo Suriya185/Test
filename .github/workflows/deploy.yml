@@ -23,8 +23,7 @@ jobs:
 
     - name: print
       run: |
-        JSON_Content='[
-                        {
+        JSON_Content='[{
                           "index": 0,
                           "name": "AzureMonitor",
                           "orgId": 1,
@@ -63,8 +62,7 @@ jobs:
                           "appInsightsApiKey": "appInsightsApiKey_stg_paconnect",
                           "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
                           "clientSecret": "grafanaClientSecret_paconnect"
-                        }
-                      ]'
+                        }]'
 
             items=$(echo "$JSON_Content" | jq -c -r '.[]')
             echo "$items"
