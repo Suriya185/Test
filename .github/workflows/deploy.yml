@@ -72,8 +72,7 @@ jobs:
                       then
                          echo "OVERRIDE_VALUES=grafana.azure[$(echo "$item" | jq -r '.index')].$key: $value" >> $GITHUB_ENV
                       else
-                         echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
-                      			 grafana.azure[$(echo "$item" | jq -r '.index')].$key: $value" >> $GITHUB_ENV
+                         echo "$OVERRIDE_VALUES=grafana.azure[$(echo "$item" | jq -r '.index')].$key: $value" >> $GITHUB_ENV
                       fi
                    done
                  done
