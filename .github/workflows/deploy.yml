@@ -63,11 +63,12 @@ jobs:
                           "clientId": "fffbb760-e78c-47c3-9d60-8cb8c90e470c",
                           "clientSecret": "grafanaClientSecret_paconnect"
                         }]'
+                items=$(echo "$JSON_Content" | jq -c -r '.[]')
 
-                for key in $(jq -r 'keys[]' <<< "$JSON_Content"); do
-                  for keys in $key; do
-                    value=$(jq -r --arg k "$keys" '.[$k]' <<< "$json_data")
-                    echo "Key: $keys, Value: $value"
+                for item in  ${items[@]}; do
+                  for key in $item; do
+                    value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
+                    echo "Key: $key, Value: $value"
                   done
                 done
 
