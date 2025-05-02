@@ -75,8 +75,7 @@ jobs:
                              echo "grafana.azure[$index].$key: $value"
                            done
                       else
-                        $OVERRIDE_VALUES=grafana.azure[$index].$key: $value 
-                                         $OVERRIDE_VALUES
+                        $OVERRIDE_VALUES+=grafana.azure[$index].$key: $value
                       fi
                       echo '$OVERRIDE_VALUES'
                  done
