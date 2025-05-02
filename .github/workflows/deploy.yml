@@ -66,6 +66,8 @@ jobs:
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
                 my_variable=""
+                newline='
+                        '
                 for item in  ${items[@]}; do
                   keys=$(echo $item | jq -c 'keys[]')
                    for key in $keys; do
@@ -75,7 +77,7 @@ jobs:
                          index=$(echo $item | jq -r .index)
                          my_variable=echo "grafana.azure[$index].$key: $value"
                       else
-                        my_variable=echo "${my_variable}\ngrafana.azure[$index].$key: $value"
+                        my_variable=echo "${my_variable}${newline}grafana.azure[$index].$key: $value"
                       fi
                     done
                  done
