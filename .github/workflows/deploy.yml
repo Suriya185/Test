@@ -85,5 +85,5 @@ jobs:
                 echo "GRAFANA_CONFIG<<EOF" >> $GITHUB_ENV
                 echo "$string_no_quotes" >> $GITHUB_ENV
                 echo "EOF" >> $GITHUB_ENV
-
+                echo $GRAFANA_CONFIG
 
