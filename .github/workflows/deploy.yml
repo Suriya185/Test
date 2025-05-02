@@ -64,17 +64,10 @@ jobs:
                           "clientSecret": "grafanaClientSecret_paconnect"
                         }]'
 
-            items=$(echo "$JSON_Content" | jq -c -r '.[]')
-            echo "$items"
-            
-            for item in ${items[@]}; do
-                if [-z ${{ env.OVERRIDE_VALUES }}];
-                then
-                   echo "OVERRIDE_VALUES=grafana.azure[${{item.index}}].${{ item.key }}: ${{ item.value }}" >> $GITHUB_ENV
-                else
-                   echo "OVERRIDE_VALUES=$OVERRIDE_VALUES
-                			 grafana.azure[${{item.index}}].${{ items.key }}: ${{ item.value }}" >> $GITHUB_ENV
-                fi
-            done
-            echo "${{ env.OVERRIDE_VALUES }}"
+                for key in $(jq -r 'keys[]' <<< "$json_data"); do
+                  value=$(jq -r --arg k "$key" '.[$k]' <<< "$json_data")
+                  echo "Key: $key, Value: $value"
+                done
+
+
 
