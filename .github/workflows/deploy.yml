@@ -78,7 +78,7 @@ jobs:
                         my_variable+="grafana.azure[$index].$key: $value"
                       fi
                     done
-                      echo '$OVERRIDE_VALUES'
+                      echo '$my_variable'
                  done
 
 
