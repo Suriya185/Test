@@ -82,8 +82,8 @@ jobs:
                     done
                  done
                 string_no_quotes=$(echo "$my_variable" | tr -d '"')
-                echo -e "$string_no_quotes" # Output: This is a string with quotes
-
+                echo "FINAL_RESULT=$(echo -e "$string_no_quotes") >> $GITHUB_ENV)
+                echo $FINAL_RESULT
 
 
 
