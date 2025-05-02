@@ -44,7 +44,7 @@ jobs:
                   ]'
         
         # Access all elements
-        echo "$array_str" | jq '.[]' | while read -r item; do
+        jq -c '.[]' $array_str | while read i; do
           name=$(echo "$item" | jq -r '.name')
           age=$(echo "$item" | jq -r '.age')
           echo "Name is $name, Age is $age"
