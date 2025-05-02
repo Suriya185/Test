@@ -69,7 +69,7 @@ jobs:
                 for item in  ${items[@]}; do
                   keys=$(echo "$item" | jq -c 'keys[]')
                      for key in $keys; do
-                       value=$(echo "$key" | jq -r ".$key")
+                       value=$(echo "$item " | jq -r ".$key")
                        echo "Key: $key, Value: $value"
                      done
                    #for key in ${!item}; do
