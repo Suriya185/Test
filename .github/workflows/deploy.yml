@@ -23,7 +23,7 @@ jobs:
 
     - name: print
       run: |
-        json='[
+        JSON_Content='[
                 {
                   "name": "Alice",
                   "age": 30
@@ -37,8 +37,9 @@ jobs:
                   "age": 35
                 }
               ]'
-              
-            echo "$json" | jq -c '.' | while read item; do
+
+            items=$(echo "$JSON_Content" | jq -c -r '.[]')
+            for item in ${items[@]}; do
               name=$(echo "$item" | jq -r '.name')
               age=$(echo "$item" | jq -r '.age')
               echo "Name is $name, Age is $age"
