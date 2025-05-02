@@ -71,13 +71,13 @@ jobs:
                 for item in  ${items[@]}; do
                   keys=$(echo $item | jq -c 'keys[]')
                    for key in $keys; do
+                      value=$(echo $item | jq -r .$key)
+                      index=$(echo $item | jq -r .index)
                      if [[ $my_variable == "" ]];
                       then
-                         value=$(echo $item | jq -r .$key)
-                         index=$(echo $item | jq -r .index)
                          my_variable="grafana.azure[$index].$key: $value"
                       else
-                        my_variable="${my_variable}${newline}grafana.azure[$index].$key: $value"
+                         my_variable="${my_variable} grafana.azure[$index].$key: $value"
                       fi
                     done
                  done
