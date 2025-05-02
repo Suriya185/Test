@@ -65,19 +65,19 @@ jobs:
                           "clientSecret": "grafanaClientSecret_paconnect"
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
-
+                my_variable=""
                 for item in  ${items[@]}; do
                   keys=$(echo $item | jq -c 'keys[]')
-                     if [-z ${{ env.OVERRIDE_VALUES }}];
+                   for key in $keys; do
+                     if [[ -n "$my_variable" ]];
                       then
-                           for key in $keys; do
-                             value=$(echo $item | jq -r .$key)
-                             index=$(echo $item | jq -r .index)
-                             echo "grafana.azure[$index].$key: $value"
-                           done
+                         value=$(echo $item | jq -r .$key)
+                         index=$(echo $item | jq -r .index)
+                         my_variable="grafana.azure[$index].$key: $value"
                       else
-                        $OVERRIDE_VALUES+="grafana.azure[$index].$key: $value"
+                        my_variable+="grafana.azure[$index].$key: $value"
                       fi
+                    done
                       echo '$OVERRIDE_VALUES'
                  done
 
