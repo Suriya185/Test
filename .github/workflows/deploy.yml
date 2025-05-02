@@ -81,7 +81,8 @@ jobs:
                       fi
                     done
                  done
-                echo -e $my_variable
+                string_no_quotes=$(echo "$my_variable" | tr -d '"')
+                echo -e "$string_no_quotes" # Output: This is a string with quotes
 
 
 
