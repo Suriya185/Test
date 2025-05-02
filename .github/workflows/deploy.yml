@@ -75,7 +75,7 @@ jobs:
                          index=$(echo $item | jq -r .index)
                          my_variable="grafana.azure[$index].$key: $value"
                       else
-                        my_variable="${my_variable} \n grafana.azure[$index].$key: $value \n"
+                        my_variable="${my_variable}\ngrafana.azure[$index].$key: $value\n"
                       fi
                     done
                  done
