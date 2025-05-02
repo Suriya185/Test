@@ -45,6 +45,6 @@ jobs:
         
         # Access all elements
         
-        echo "$json" | jq -r '.[] | "Name is \(.name), Age is \(.age)"'
+        echo "$json" | jq -r '.[] |  echo "Name is \(.name), Age is \(.age)"
         echo "$array_str" | jq -r .[]
 
