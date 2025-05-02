@@ -13,12 +13,8 @@ permissions:
   packages: write
 
 jobs:
-   matrix:
-     uses: ./.github/workflows/matrix.yml
-  
    deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -27,24 +23,7 @@ jobs:
 
     - name: print
       run: |
-        # Assuming 'array_string' is your JSON string
-        array_str='[
-                    {
-                      "name": "Alice",
-                      "age": 30
-                    },
-                    {
-                      "name": "Bob",
-                      "age": 25
-                    },
-                    {
-                      "name": "Charlie",
-                      "age": 35
-                    }
-                  ]'
-        
-        # Access all elements
-        jq -c '.[]' $array_str | while read i; do
+        jq -c '.[]' ./test.json | while read i; do
           name=$(echo "$item" | jq -r '.name')
           age=$(echo "$item" | jq -r '.age')
           echo "Name is $name, Age is $age"
