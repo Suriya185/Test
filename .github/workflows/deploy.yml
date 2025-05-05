@@ -71,7 +71,7 @@ jobs:
                    for key in $keys; do
                       value=$(echo $item | jq -r .$key)
                       index=$(echo $item | jq -r .index)
-                     if [[ $my_variable == "" ]];
+                     if [[ $override_values == "" ]];
                       then
                          override_values="grafana.azure[$index].$key: $value"
                       else
