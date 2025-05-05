@@ -66,8 +66,6 @@ jobs:
                         }]'
                 items=$(echo "$JSON_Content" | jq -c -r '.[]')
                 my_variable=""
-                newline='
-                        '
                 for item in  ${items[@]}; do
                   keys=$(echo $item | jq -c 'keys[]')
                    for key in $keys; do
