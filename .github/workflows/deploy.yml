@@ -75,7 +75,7 @@ jobs:
                       then
                          override_values="grafana.azure[$index].$key: $value"
                       else
-                         override_values="${my_variable}\ngrafana.azure[$index].$key: $value"
+                         override_values="${override_values}\ngrafana.azure[$index].$key: $value"
                       fi
                     done
                  done
