@@ -24,6 +24,8 @@ jobs:
 
       - name: Determine Trigger Source
         run: |
+          echo "${{ github.event_name }}"
+        
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "Workflow was triggered manually."
           elif [ "${{ github.event_name }}" == "schedule" ]; then
