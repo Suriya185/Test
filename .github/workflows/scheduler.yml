@@ -1,0 +1,33 @@
+name: Upgrade Node Images
+
+on:
+  push:
+  schedule:
+    - cron: '* * * * *' # At 18:00 on Wednesday
+  workflow_dispatch: 
+    inputs:
+      dev:
+        type: boolean
+        default: false
+      spot:
+        type: boolean
+        default: false
+      production:
+        type: boolean
+        default: false
+jobs:
+  upgrade-node-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Determine Trigger Source
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "Workflow was triggered manually."
+          elif [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "Workflow was triggered by the scheduler."
+          else
+            echo "Workflow was triggered by another event: ${{ github.event_name }}"
+          fi
