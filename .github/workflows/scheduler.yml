@@ -1,4 +1,4 @@
-name: Create our Weekly Meeting notes issue
+name: Scheduler
 on:
   woworkflow_dispatch:
   schedule:
