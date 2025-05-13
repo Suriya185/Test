@@ -1,15 +1,20 @@
 name: Create our Weekly Meeting notes issue
 on:
-  workflow_dispatch:
- # schedule:
-  #  - cron: '*/5 * * * *'
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
   issue:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          filename: .github/ISSUE_TEMPLATE/meeting-notes.md
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Determine Trigger Source
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "Workflow was triggered manually."
+          elif [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "Workflow was triggered by the scheduler."
+          else
+            echo "Workflow was triggered by another event: ${{ github.event_name }}"
+          fi
