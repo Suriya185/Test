@@ -1,5 +1,6 @@
 name: Create our Weekly Meeting notes issue
 on:
+  woworkflow_dispatch:
   schedule:
     - cron: '*/5 * * * *'
 jobs:
