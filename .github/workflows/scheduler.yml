@@ -1,8 +1,9 @@
 name: Scheduler
-on:
-  woworkflow_dispatch:
+on: 
   schedule:
     - cron: '*/5 * * * *'
+  workflow_dispatch:
+  
 jobs:
   issue:
     runs-on: ubuntu-latest
