@@ -26,3 +26,8 @@ jobs:
       with:
         name: json
         path: ./test.json
+
+    - name: Delete Artifacts
+      uses: actions/delete-artifact@v1
+      with:
+        name: json
